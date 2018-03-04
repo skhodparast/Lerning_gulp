@@ -15,3 +15,6 @@ way use gulp:
   
 do task specified:
   gulp <task name>
+
+do task in order:
+  ['name old task']
