@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 
 
-gulp.task('default', function(){
+gulp.task('default', ['one', 'two'] , function(){
   console.log('Hello World');
 })
 
@@ -11,4 +11,8 @@ gulp.task('one', function(){
 
 gulp.task('two', ['one'] , function(){
   console.log('task two');
+})
+
+gulp.task('three', ['one'] , function(){
+  gulp.start('two');
 })
