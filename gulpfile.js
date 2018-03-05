@@ -4,49 +4,30 @@ const dir = {
   },
 
 gulp          = require('gulp'),
-runSequence          = require('run-sequence'),
+// runSequence          = require('run-sequence'),
 // gutil         = require('gulp-util'),
 // newer         = require('gulp-newer'),
 // imagemin      = require('gulp-imagemin')
-sass          = require('gulp-sass'),
+// sass          = require('gulp-sass'),
 // postcss       = require('gulp-postcss'),
 // deporder      = require('gulp-deporder'),
-concat        = require('gulp-concat'),
-concat_css        = require('gulp-concat-css')
+// concat        = require('gulp-concat'),
+// concat_css        = require('gulp-concat-css'),
 // stripdebug    = require('gulp-strip-debug'),
 // uglify        = require('gulp-uglify')
+browserSync        = require('browser-sync').create()
 ;
 // var browsersync = false;
 
-
-gulp.task('copyFiles', function(){
-	 gulp.src(dir.src + 'html/*.html')
-		.pipe(gulp.dest(dir.build + 'html/'));
-});
-
-gulp.task('Sass2css', function(){
-	return gulp
-		.src(dir.src + 'sass/**/*.scss')
-		.pipe(sass({outputstyle: 'compressed'}).on('error', sass.logError))
-		.pipe(gulp.dest(dir.src + 'css/'));
-});
-
-gulp.task('processCss', function(){
-	gulp.src(dir.src + 'css/*.css')
-		.pipe(concat_css("style.css"))
-		.pipe(gulp.dest(dir.build + 'css/'));
-});
-
-gulp.task('concat_js_files', function(){
-	gulp.src(dir.src + 'js/**/*')
-		.pipe(concat("app.js"))
-		.pipe(gulp.dest(dir.build + 'js/'));
-});
-
-gulp.task('build', function(callback){
-	 runSequence('Sass2css', ['copyFiles', 'processCss', 'concat_js_files'], callback)
+gulp.task('watch', ['browserSync'] , function(){
+  gulp.watch(dir.src + 'html/**/*' , browserSync.reload)
 })
 
-gulp.task('watch', function(){
-  gulp.watch(dir.src + 'js/**/*' , ['concat_js_files'])
-})
+gulp.task('browserSync', function(){
+	browserSync.init({
+    // server: './_src/html',
+    server: dir.src + 'html',
+    port: 8080,
+    ui:{ port: 8081}
+  })
+});
