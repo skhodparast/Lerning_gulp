@@ -1,5 +1,7 @@
-test 1
-test 2
+console.log('This ia file: jsone.js')
+
+alert('This alert is in jsone.js')
+alert('This alert is in jsone.js')
 
 test 5
 test 6

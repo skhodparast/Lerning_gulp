@@ -46,3 +46,7 @@ gulp.task('concat_js_files', function(){
 gulp.task('build', function(callback){
 	 runSequence('Sass2css', ['copyFiles', 'processCss', 'concat_js_files'], callback)
 })
+
+gulp.task('watch', function(){
+  gulp.watch(dir.src + 'js/**/*' , ['concat_js_files'])
+})
