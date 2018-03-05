@@ -1,6 +1,4 @@
-const
-
-dir = {
+const dir = {
     src         : '_src/',
     build       : '_build/'
   },
@@ -18,14 +16,31 @@ concat        = require('gulp-concat')
 ;
 // var browsersync = false;
 
-const images = {
+const java = {
   // src         : dir.src + 'js/*',
-  src         : dir.src + 'js/**/*',
+  src         : [dir.src + 'js/**/*.js'],
   build       : dir.build + 'js/'
 };
 
-gulp.task('concat_js_files', function(){
-	gulp.src(images.src)
+gulp.task('task1', function(){
+	return gulp
+		.src(java.src)
 		.pipe(concat("app.js"))
-		.pipe(gulp.dest(images.build));
+		.pipe(gulp.dest(java.build));
 });
+
+gulp.task('task2', function(){
+	return gulp
+  .src(java.src)
+  .pipe(concat("app2.js"))
+  .pipe(gulp.dest(java.build));
+});
+
+gulp.task('task3', function(){
+	return gulp
+  .src(java.src)
+  .pipe(concat("app3.js"))
+  .pipe(gulp.dest(java.build));
+});
+
+gulp.task('default', ['task1', 'task2', 'task3']);
