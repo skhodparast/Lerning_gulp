@@ -56,8 +56,9 @@ gulp.task('build', function(callback){
 })
 
 gulp.task('watch' , function(){
-  gulp.watch('_src/sass/**/*' , ['build'])
-  // gulp.watch('_src/sass/**/*' , ['concat'])
+	gulp.watch('_src/sass/**/*' , ['build'])
   gulp.watch('index.html' , browserSync.reload)
+	gulp.watch('_dest/css/main.css' , browserSync.reload)
+	gulp.watch('gulpfile.js' , browserSync.reload)
 });
 gulp.task('default', ['browserSync', 'watch'] ,function(){})
